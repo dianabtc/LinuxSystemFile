@@ -3,8 +3,11 @@ Proiectul prezinta implementarea unui Linux-like CLI pentru a manipula
 un sistem de fisiere.
 
 In fisierul header.h, am inceput prin a realiza structurile necesare:
+
 ->TDirectory, structura pentru director
+
 ->TFile, structura pentru fisier
+
 In system_file.c am realizat doua functii ce realizeaza alocarea de memorie pentru
 aceste doua structuri. Aloc memorie pentru o structura de tip TFile si setez
 campul "name" si "parent" al acesteia, iar pentru TDirectory procedez similar.
@@ -16,6 +19,7 @@ Pe prima pozitie din acest vector va fi root-ul.
 Am implementat functii pentru comenzi astfel:
 
 -> TOUCH
+
 In cadrul acestei comenzi m-am folosit de functia "directory_exists", ce verifica
 daca exista un director cu numele fisierului pe care vrem sa-l cream in ierarhia
 de subdirectoare (compara numele primit ca parametru si daca nu sunt egale cauta
@@ -28,6 +32,7 @@ afirmativ, se afiseaza un mesaj si inserarea nu se mai realizeaza.
 Functia este dupa modelul celei din laborator: Inserare_ABC.
 
 -> MKDIR
+
 In cadrul acestei comenzi m-am folosit de functia "file_exists", ce verifica in
 mod similar cu cea pt directoare existenta unui fisier cu numele directorului
 pe care vrem sa-l cream in arborele de fisiere. Daca exista un astfel de fisier,
@@ -38,10 +43,12 @@ deja un director cu numele respectiv; in caz afirmativ, se afiseaza un mesaj
 si inserarea nu se mai realizeaza.
 
 -> LS
+
 In aceasta comanda ma folosesc de functiile "print_directories" si "print_files"
 ce afiseaza arborii de subdirectoare si fisiere in ordine SRD.
 
 -> RM
+
 In aceasta comanda, verific initial daca exista fisierul cu numele respectiv
 folosindu-ma de functia "file_exists". Daca nu exista, afisez mesajul. Daca exista,
 apelez functia "remove_file" pe arborele de fisiere al directorului curent.
@@ -53,11 +60,13 @@ drept, copiem numele si stergem nodul.
 (https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/)
 
 -> RMDIR
+
 Aceasta comanda functioneaza la fel ca RM, numai ca verific daca exista directorul
 cu functia "directory_exists", dupa care apelez functia "remove_directory" pe
 arborele de subdirectoare al directorului curent.
 
 -> CD
+
 In cadrul acestei comenzi, am tratat separat cazul cand numele directorului este
 "..", adica atunci cand va trebui sa ne deplasam pe parintele directorului curent.
 In celalalt caz, mai intai verific daca directorul curent este "root". Verific
@@ -72,6 +81,7 @@ De fiecare data cand ma mut in alt director, retin directorul curent in vectorul
 de TDirectory*.
 
 -> PWD
+
 In cadrul acestei comenzi m-am folosit de functia f_pwd ce este apelata pe
 directorul curent. In cadrul acestei functii, numar initial numarul de parinti
 incepand din directorul in care ma aflu. Apoi, imi aloc un vector unde voi 
@@ -81,6 +91,7 @@ root-ul. Apoi, parcurg acest vector in ordine inversa si afisez, obtinand astfel
 calea directorului curent.
 
 -> FIND
+
 In aceasta comanda ma folosesc de vectorul de TDirectory* pe care l-am creat
 pe parcurs. Astfel, pentru "find -f" apelez functia "file_exists" pe fiecare
 element din vector (adica pentru fiecare director care a fost "curent" la un
