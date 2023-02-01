@@ -1,6 +1,7 @@
 # LinuxSystemFile
 Proiectul prezinta implementarea unui Linux-like CLI pentru a manipula
 un sistem de fisiere.
+
 In fisierul header.h, am inceput prin a realiza structurile necesare:
 ->TDirectory, structura pentru director
 ->TFile, structura pentru fisier
